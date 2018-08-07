@@ -1,0 +1,15 @@
+# Project dependencies
+.cache
+node_modules
+yarn-error.log
+
+# Build directory
+/public
+
+.DS_Store
+
+# Design mockups of new website, old ideas
+/mocks
+
+# Prevent iCloud Drive from syncing folder
+.nosync
