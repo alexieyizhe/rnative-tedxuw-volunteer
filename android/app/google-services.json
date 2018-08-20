@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1080769472045",
+    "firebase_url": "https://tedxuw-volunteer-app.firebaseio.com",
+    "project_id": "tedxuw-volunteer-app",
+    "storage_bucket": "tedxuw-volunteer-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080769472045:android:0a95835cf56fcc8f",
+        "android_client_info": {
+          "package_name": "com.tedxuw.tedxuwvolunteerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080769472045-lbvur3jek8118q9qo47cf2mag1jf52gd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZKw9FiCML75lVpmfbggIhUf7dubeU32o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
