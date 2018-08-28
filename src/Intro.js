@@ -12,30 +12,54 @@ export default class Intro extends React.Component {
     this.state = {};
   }
 
+  onSkipBtnHandle = (index) => {
+    Alert.alert('Skip');
+    console.log(index);
+  }
+  doneBtnHandle = () => {
+    Alert.alert('Done');
+  }
+  nextBtnHandle = (index) => {
+    Alert.alert('Next');
+    console.log(index);
+  }
+  onSlideChangeHandle = (index, total) => {
+    console.log(index, total);
+  }
+
   render() {
+    const pageArray = [{
+      title: 'Page 1',
+      description: 'Description 1',
+      img: 'http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/headphone-icon.png',
+      imgStyle: {
+        height: 80 * 2.5,
+        width: 109 * 2.5,
+      },
+      backgroundColor: '#fa931d',
+      fontColor: '#fff',
+      level: 10,
+    }, {
+      title: 'Page 2',
+      description: 'Description 2',
+      img: 'http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/headphone-icon.png',
+      imgStyle: {
+        height: 93 * 2.5,
+        width: 103 * 2.5,
+      },
+      backgroundColor: '#a4b602',
+      fontColor: '#fff',
+      level: 10,
+    }];
+    
     return (
-      <View>
-        <Text>The following Firebase modules are pre-installed:</Text>
-        {firebase.admob.nativeModuleExists && <Text>admob()</Text>}
-        {firebase.analytics.nativeModuleExists && <Text>analytics()</Text>}
-        {firebase.auth.nativeModuleExists && <Text>auth()</Text>}
-        {firebase.config.nativeModuleExists && <Text>config()</Text>}
-        {firebase.crashlytics.nativeModuleExists && <Text>crashlytics()</Text>}
-        {firebase.database.nativeModuleExists && <Text>database()</Text>}
-        {firebase.firestore.nativeModuleExists && <Text>firestore()</Text>}
-        {firebase.functions.nativeModuleExists && <Text>functions()</Text>}
-        {firebase.iid.nativeModuleExists && <Text>iid()</Text>}
-        {firebase.invites.nativeModuleExists && <Text>invites()</Text>}
-        {firebase.links.nativeModuleExists && <Text>links()</Text>}
-        {firebase.messaging.nativeModuleExists && <Text>messaging()</Text>}
-        {firebase.notifications.nativeModuleExists && <Text>notifications()</Text>}
-        {firebase.perf.nativeModuleExists && <Text>perf()</Text>}
-        {firebase.storage.nativeModuleExists && <Text>storage()</Text>}
-        <Button
-          title="Go to Scanner"
-          onPress={() => this.props.navigation.navigate('Main')}
-        />
-      </View>
+      <AppIntro
+        onNextBtnClick={this.nextBtnHandle}
+        onDoneBtnClick={this.doneBtnHandle}
+        onSkipBtnClick={this.onSkipBtnHandle}
+        onSlideChange={this.onSlideChangeHandle}
+        pageArray={pageArray}
+      />
     );
   }
 }
