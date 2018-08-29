@@ -28,6 +28,7 @@
     "react-native-camera": "^1.2.0",
     "react-native-firebase": "^4.3.6",
     "react-native-qrcode-scanner": "^1.0.1",
+    "react-native-status-bar-height": "^2.0.0",
     "react-navigation": "^2.12.1"
   },
   "main": "./src/App.js"

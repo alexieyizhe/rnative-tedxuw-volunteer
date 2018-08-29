@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Platform, Image, Text, View, Button, TouchableOpacity, } from 'react-native';
+import { StyleSheet, Platform, Image, Text, View, Button, TouchableOpacity, StatusBar, Alert } from 'react-native';
 import firebase from 'react-native-firebase';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 export default class Scanner extends React.Component {
 
@@ -10,43 +11,73 @@ export default class Scanner extends React.Component {
     this.state = {};
   }
 
-  onSuccess(e) {
-    Linking
-      .openURL(e.data)
-      .catch(err => console.error('An error occured', err));
+  componentDidMount() {
+    StatusBar.setBarStyle('light-content');
+    const needsTutorial = true;
+
+    if (needsTutorial) {
+      this.props.navigation.navigate('Intro');
+    }
   }
+
+  onSuccess(e) {
+    // open checkin modal here
+    Alert.alert(`Scannd: ${e.data}`)
+  };
+
+  onPress(buttonType) {
+    switch(buttonType) {
+      case 'login':
+        Alert.alert('Pressed login');
+        break;
+      case 'changeEvent':
+        Alert.alert('Currently scanning for Registration');
+        break;
+      case 'help':
+        this.props.navigation.navigate('Intro');
+        break;
+    }
+  };
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <QRCodeScanner
-          onRead={this.onSuccess.bind(this)}
-          topContent={
-            <Text style={styles.centerText}>
-              Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
-            </Text>
-          }
-          bottomContent={
-            <TouchableOpacity style={styles.buttonTouchable}>
-              <Text style={styles.buttonText}>OK. Got it!</Text>
-            </TouchableOpacity>
-          }
+          onRead={(e) => this.onSuccess}
+          cameraStyle={styles.scannerView}
+          showMarker={true}
         />
-        <Button
-          title="Go to Intro"
-          onPress={() => this.props.navigation.navigate('Intro')}
-        />
+        <View style={{height: '5%', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <TouchableOpacity onPress={() => this.onPress('login')}><Text style={styles.startText}>S</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.onPress('changeEvent')}><Text style={styles.centerText}>R</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => this.onPress('help')}><Text style={styles.endText}>H</Text></TouchableOpacity>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  centerText: {
-    flex: 1,
+  scannerView: {
+    height: '100%',
+  },
+  startText: {
     fontSize: 18,
-    padding: 32,
     color: '#777',
+  },
+  centerText: {
+    fontSize: 18,
+    color: '#777',
+  },
+  endText: {
+    fontSize: 18,
+    color: '#777',
+  },
+  reticle: {
+    width: 100,
+    height: 100,
+    color: 'red',
+    opacity: 0.4,
   },
   textBold: {
     fontWeight: '500',
