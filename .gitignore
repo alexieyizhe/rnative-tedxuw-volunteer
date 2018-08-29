@@ -13,3 +13,7 @@ yarn-error.log
 
 # Prevent iCloud Drive from syncing folder
 .nosync
+
+
+# iOS files
+/ios/build
